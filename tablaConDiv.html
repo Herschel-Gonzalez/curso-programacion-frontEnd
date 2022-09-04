@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla usando DIV</title>
+    <style type="text/css">
+
+        html {
+
+            font-style: italic;
+            font-size: larger;
+
+        }
+
+        .Table {
+
+            display: table;
+
+        }
+
+        .Title {
+
+            display: table-caption;
+
+            text-align: center;
+
+            font-weight: bold;
+
+            font-size: larger;
+
+        }
+
+        .Heading {
+
+            display: table-row;
+
+            font-weight: bold;
+
+            text-align: center;
+
+            background-color: forestgreen;
+
+            color: white;
+
+        }
+
+        .Row {
+
+            display: table-row;
+
+        }
+
+        .Cell {
+
+            text-align: center;
+
+            vertical-align: middle;
+            
+
+            display: table-cell;
+
+            border: solid;
+
+            border-width: thin;
+
+            padding-left: 5px;
+
+            padding-right: 5px;
+
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+
+    <form id="form1" runat="server">
+        <div class="Table">
+            <div class="Title">
+                <p>
+                    Tipos de loros y cuanto tiempo viven</p>
+            </div>
+            <div class="Heading">
+                <div class="Cell">
+                    <p>
+                        Nombre</p>
+                </div>
+                <div class="Cell">
+                    <p>
+                        Descripcion</p>
+                </div>
+                <div class="Cell">
+                    <p>
+                        Cuanto tiempo vive</p>
+                </div>
+                <div class="Cell">
+                    <p>
+                        Foto</p>
+                </div>
+            </div>
+            <div class="Row">
+                <div class="Cell">
+                    <p>
+                        Amazona albifrons
+                    </p>
+                </div>
+                <div class="Cell">
+                    <p>
+                        Es una especie de loro endémico de América Central. Mide de 25 a 29cm; es verde con la frente blanca y corona azul. Se distribuye desde el norte de México hasta el oeste de Costa Rica. Utiliza una amplia gama de hábitats</p>
+                </div>
+                <div class="Cell">
+                    <p>
+                        20-60 años</p>
+                </div>
+                <div class="Cell">
+                    <p>
+                        <img src="imagenes/foto-one.jpeg" width="180" height="140">
+                    </p>
+                </div>
+            </div>
+            <div class="Row">
+                <div class="Cell">
+                    <p>
+                        Amazona oratrix
+                    </p>
+                </div>
+                <div class="Cell">
+                    <p>
+                        El loro de cabeza amarilla o loro rey es una especie de ave psitaciforme de la familia de los loros. Reconocible por la cabeza completamente amarilla del ave adulta, es la más septentrional de los psitácidos coronados de amarillo del género</p>
+                </div>
+                <div class="Cell">
+                    <p>
+                        20 - 80 años</p>
+                </div>
+                <div class="Cell">
+                    <p>
+                        <img src="imagenes/loro-cabeza-amarilla.jpeg" width="180" height="140">
+                        </p>
+                </div>
+            </div>
+            <div class="Row">
+                <div class="Cell">
+                    <p>
+                        Amazona finschi
+                    </p>
+                </div>
+                <div class="Cell">
+                    <p>
+                        Es un loro mediano de 33cm de largo, de color verde, corona roja y nuca lila. Es endémica de la vertiente de la costa del Pacífico Mexicano, desde el sur de Sonora a Oaxaca
+                    </p>
+                </div>
+                <div class="Cell">
+                    <p>
+                        40-60 años.</p>
+                </div>
+                <div class="Cell">
+                    <p>
+                        <img src="imagenes/amazona-guayabera.jpeg" width="180" height="140">    
+                    </p>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
