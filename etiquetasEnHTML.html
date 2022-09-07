@@ -7,25 +7,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etiquetas en html</title>
 
+    <header>
+        <h1>Etiquetas más comunes en HTML</h1>
+    </header>
+
     <style type="text/css">
-        .Code {
+
+
+header {
+	position: fixed;
+	width: 100%;
+	height: 5cm;
+    font-size: 10px;
+}
+
+
+header::before {
+	content: "";
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 6em;
+	width: 100%;
+	height: 10cm;
+	z-index: -1;
+	transform: skewY(-3.5deg);
+	background: 
+	linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,0,0,.6)),
+	url(https://images.unsplash.com/photo-1495464101292-552d0b52fe41?auto=format&fit=crop&w=1350&q=80) no-repeat center,
+	linear-gradient(#4e4376, #2b5876);
+	background-size: cover;
+	border-bottom: .2em solid #fff;
+}
+
+h1 {
+	font-size: 50px;
+	font-weight: 700;
+	letter-spacing: .01em;
+	padding: 20px;
+	text-shadow: .022em .022em .022em #111;
+	color: #fff;
+    text-align: left;
+}
+
+    .Code {
+            display: block;
             font: normal 0.875rem/1.5rem "Fira Mono", "Source Code Pro", monospace;
             word-wrap: break-word;
-            color: greenyellow;
-            background-color: black;
-            box-shadow: inset 0 0 0 1px rgb(0 0 0 / 15%);
+            color: orange;
+            background-color: #2D3359;
+            box-shadow: inset 0 0 0 1px white;
             border-radius: 0 0 2px 2px;
-            padding: 0.75rem;
+            width:350px;
+            margin:50px;
+            padding:20px;
+            text-align: center;
+            font-size: x-large;
         }
+
+        p,li,a{
+            color: white;
+            text-align: justify;
+            font-size: large;
+        }
+
+        
+
+        h1{
+            color: white;
+            text-align: center;
+        }
+        h2{
+            color: aqua;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: x-large;
+        }
+
+        .PrimerTema{
+            padding-top: 5cm;
+        }
+
+        .Texto{
+            padding-left: 10cm;
+            padding-right: 10cm;
+        }
+
+        .Tema:hover{
+            color: aqua;
+        }
+
+        html{
+            background-color: black;
+            font-family: 'Courier New', Courier, monospace;
+            min-height: 100vh;
+        }
+
     </style>
 
 </head>
 
 <body>
 
-    <h1>Etiquetas más comunes en HTML</h1>
+    <section class="Texto">
+        <br>
+    <div class="PrimerTema">
+        <p>Contenido</p>
+        <ul>
+            <li><a class="Tema" href="#tema1">METADATOS DEL DOCUMENTO</a></li>
+            <li><a class="Tema" href="#tema2">ETIQUETAS DE SECCIONES O PARA ESTRUCTURAR EL HTML</a></li>
+            <li><a class="Tema" href="#tema3">ETIQUETAS PARA LA AGRUPACIÓN DE CONTENIDO</a></li>
+            <li><a class="Tema" href="#tema4">ETIQUETAS SEMÁNTICAS PARA TEXTO</a></li>
+            <li><a class="Tema" href="#tema5">ETIQUETAS PARA INCRUSTAR CONTENIDO</a></li>
+            <li><a class="Tema" href="#tema6">ETIQUETAS PARA LA CREACIÓN DE TABLAS</a></li>
+            <li><a class="Tema" href="#tema7">ETIQUETAS PARA LA CREACIÓN DE FORMULARIOS</a></li>
 
-    <h2>METADATOS DEL DOCUMENTO</h2>
+
+        </ul>
+    </div>
+
+    <br>
+
+    <h2 id = "tema1">METADATOS DEL DOCUMENTO</h2>
 
     <ul>
         <li> Representa una colección de metadatos acerca del documento, incluyendo enlaces a, o definiciones de,
@@ -45,7 +147,7 @@
         <p class="Code">&lt;style&gt;&lt;/style&gt;</p>
     </ul>
 
-    <h2>ETIQUETAS DE SECCIONES O PARA ESTRUCTURAR EL HTML</h2>
+    <h2 id = "tema2">ETIQUETAS DE SECCIONES O PARA ESTRUCTURAR EL HTML</h2>
     <ul>
         <li>Todo lo que quieras mostrar en la página web debe ir recogido dentro de las etiquetas de apertura y cierre de:</li>
         <p class="Code">&lt;body&gt;&lt;/body&gt;</p>
@@ -57,14 +159,138 @@
         <p class="Code">&lt;section&gt;&lt;/section&gt;</p>
         <li>Define contenido independiente de la web.</li>
         <p class="Code">&lt;article&gt;&lt;/article&gt;</p>
-
-
-
+        <li>Dentro de estas etiquetas suele alojarse el contenido adicional de la web. Suele ser contenido relacionado con la web pero de poca importancia</li>
+        <p class="Code">&lt;aside&gt;&lt;/aside&gt;</p>
+        <li>Son etiquetas HTML muy importantes, ya que son usadas para jerarquizar el contenido de la web. Las etiquetas se usan para explicar brevemente el contenido que irá a continuación.</li>
+        <p class="Code">&lt;h1&gt;&lt;h2&gt;&lt;h3&gt;</p>
+        <li>Se usan para definir la cabecera la página web. Suele contener el logotipo, menú de navegación, etc.</li>
+        <p class="Code">&lt;header&gt;&lt;/header&gt;</p>
+        <li>Usadas para definir el pie de página.</li>
+        <p class="Code">&lt;footer&gt;&lt;/footer&gt;</p>
 
     </ul>
+
+    <ul>
+        <h2 id = "tema3">ETIQUETAS PARA LA AGRUPACIÓN DE CONTENIDO</h2>
+        <li> Etiqueta usada para escribir párrafos de texto</li>
+        <p class="Code">&lt;p&gt;&lt;/p&gt;</p>
+        <li>Etiqueta utilizada para «romper» entre dos secciones de una web. Usada comúnmente como separador.</li>
+        <p class="Code">&lt;hr&gt;&lt;/hr&gt;</p>
+        <li>Usada para pegar texto manteniendo el pre formato propio del texto.</li>
+        <p class="Code">&lt;pre&gt;&lt;/pre&gt;</p>
+        <li>Se usan para indicar que el contenido es texto citado.</li>
+        <p class="Code">&lt;blockquote&gt;&lt;/blockquote&gt;</p>
+        <li>Etiquetas para crear una lista ordenada</li>
+        <p class="Code">&lt;ol&gt;&lt;/ol&gt;</p>
+        <li>Etiquetas para crear una lista des-ordenada</li>
+        <p class="Code">&lt;ul&gt;&lt;/ul&gt;</p>
+        <li>Usada para crear una lista de definiciones</li>
+        <p class="Code">&lt;dl&gt;&lt;/dl&gt;</p>
+        <li>Indica una figura ilustrada como parte del documento HTML5.</li>
+        <p class="Code">&lt;figure&gt;&lt;/figure&gt;</p>
+        <li>Utilizada para definir la leyenda de una figura.</li>
+        <p class="Code">&lt;fgcaption&gt;&lt;/fgcaption&gt;</p>
+        <li>Etiqueta común utilizada para crear un contenedor genérico.</li>
+        <p class="Code">&lt;div&gt;&lt;/div&gt;</p>
+    </ul>
+
+    <ul>
+        <H2 id="tema4">ETIQUETAS SEMÁNTICAS PARA TEXTO
+        </H2>
+
+        <li>Etiqueta utilizada para crear hiperenlaces en el documento HTML</li>
+        <p class="Code">&lt;a&gt;&lt;/a&gt;</p>
+        <li>Etiqueta para definir una palabra o conjunto de ellas como importantes. Tiene una fuerte importancia en el SEO de la página.</li>
+        <p class="Code">&lt;strong&gt;&lt;/strong&gt;</p>
+        <li>Utilizada para dejar un comentario aparte, del tipo una nota de derechos de autoría, u otros textos que no son esenciales para la comprensión del documento.</li>
+        <p class="Code">&lt;small&gt;&lt;/small&gt;</p>
+        <li>Para indicar el título de una obra</li>
+        <p class="Code">&lt;cite&gt;&lt;/cite&gt;</p>
+        <li>Etiquetas utilizadas para representar un subíndice o superíndice.</li>
+        <p class="Code">&lt;sub&gt;&lt;/sub&gt;</p>
+        <p class="Code">&lt;sup&gt;&lt;/sup&gt;</p>
+        <li>Usada para resaltar texto</li>
+        <p class="Code">&lt;mark&gt;&lt;/mark&gt;</p>
+        <li>Etiqueta HTML sin ningún significado específico. Se usa conjuntamente con los atributos «class» o «id» para atribuirle ciertas características.</li>
+        <p class="Code">&lt;span&gt;&lt;/span&gt;</p>
+        <li>Etiqueta utilizada para crear un salto de línea</li>
+        <p class="Code">&lt;br&gt;&lt;/br&gt;</p>
+        
+    </ul>
+
+    <ul>
+        <h2 id="tema5">ETIQUETAS PARA INCRUSTAR CONTENIDO</h2>
+        <li>Etiqueta para «pintar» una imagen en la página web.</li>
+        <p class="Code">&lt;img&gt;</p>
+        <li>Es una etiqueta que sirve para anidar otro documento HTML dentro del documento principal.</li>
+        <p class="Code">&lt;iframe&gt;&lt;/iframe&gt;</p>
+        <li>Usada para integrar una aplicación o contenido interactivo externo que no suele ser HTML.</li>
+        <p class="Code">&lt;embed&gt;&lt;/embed&gt;</p>
+        <li>Utilizada llamar a un recurso externo de la web. Este recurso será tratado como una imagen, o un recurso externo para ser procesado por un plugin.</li>
+        <p class="Code">&lt;object&gt;&lt;/object&gt;</p>
+        <li>Se usa para reproducir video en la página web junto a sus archivos de audio y capciones asociadas.</li>
+        <p class="Code">&lt;video&gt;&lt;/video&gt;</p>
+        <li>Usada para cargar en una web un archivo de audio o stream de audio.</li>
+        <p class="Code">&lt;audio&gt;&lt;/audio&gt;</p>
+        <li>Permite a autores especificar recursos multimedia alternativos para las etiquetas de video o audio</li>
+        <p class="Code">&lt;source&gt;&lt;/source&gt;</p>
+        <li>Se usa para llamar a una imagen vectorizada.</li>
+        <p class="Code">&lt;svg&gt;&lt;/svg&gt;</p>
+
+    </ul>
+
+    <ul>
+        <h2 id="tema6">ETIQUETAS PARA LA CREACIÓN DE TABLAS</h2>
+        <li>Etiquetas de apertura y cierre de una tabla. El resto de etiquetas de la tabla han de ir siempre recogidas entre estas dos etiquetas.</li>
+        <p class="Code">&lt;table&gt;&lt;/table&gt;</p>
+        <li>Usada para indicar el título de la tabla.</li>
+        <p class="Code">&lt;caption&gt;&lt;/caption&gt;</p>
+        <li>Etiqueta utilizada para agrupar dos o más columnas de una tabla.</li>
+        <p class="Code">&lt;colgroup&gt;&lt;/colgroup&gt;</p>
+        <li>Usada para describir los datos concretos de una tabla.</li>
+        <p class="Code">&lt;tbody&gt;&lt;/tbody&gt;</p>
+        <li>Indica el bloque de filas que describen las etiquetas de las columnas de la tabla.</li>
+        <p class="Code">&lt;thead&gt;&lt;/thead&gt;</p>
+        <li> Indica los bloques de filas que describen los resúmenes, o datos totales de una columna de una tabla.</li>
+        <p class="Code">&lt;tfoot&gt;&lt;/tfoot&gt;</p>
+        <li>Se usa para indicar una fila de celdas de una tabla.</li>
+        <p class="Code">&lt;tr&gt;&lt;/tr&gt;</p>
+        <li>Usada para definir una celda de una tabla.</li>
+        <p class="Code">&lt;td&gt;&lt;/td&gt;</p>
+        <li>Etiqueta que se usa para definir el encabezado de una celda</li>
+        <p class="Code">&lt;th&gt;&lt;/th&gt;</p>
+
+    </ul>
+
+    <ul>
+        <h2 id="tema7">ETIQUETAS PARA LA CREACIÓN DE FORMULARIOS </h2>
+        <li>Etiqueta de apertura y cierre de un formulario de una página web. El resto de etiquetas de formulario deben ir siempre recogidas entre estas etiquetas de apertura y cierre de formulario.</li>
+        <p class="Code">&lt;form&gt;&lt;/form&gt;</p>
+        <li>Etiqueta que representa un conjunto o agrupación de elementos de un formulario. «Pinta» un recuadro alrededor de las etiquetas que estén contenidas dentro del </li>
+        <p class="Code">&lt;fieldset&gt;&lt;/fieldset&gt;</p>
+        <li>Etiqueta ligada a fieldset, indica el titulo del fieldset</li>
+        <p class="Code">&lt;legend&gt;&lt;/legend&gt;</p>
+        <li>Se usa para definir el nombre o título de un control del formulario.</li>
+        <p class="Code">&lt;label&gt;&lt;/label&gt;</p>
+        <li>Pinta un campo de introducción de datos para el usuario. Es de las principales etiquetas de un formulario.</li>
+        <p class="Code">&lt;input&gt;</p>
+        <li>Etiqueta utilizada para representar un botón en el formulario.</li>
+        <p class="Code">&lt;button&gt;&lt;/button&gt;</p>
+        <li>Input que permite una selección entre un conjunto de opciones.</li>
+        <p class="Code">&lt;select&gt;&lt;/select&gt;</p>
+        <li>Permite añadir diferentes opciones al select</li>
+        <p class="Code">&lt;option&gt;&lt;/option&gt;</p>
+        <li>Añade un campo al usuario para que pueda introducir texto en unas líneas máximas de texto que el desarrollador puede definir.</li>
+        <p class="Code">&lt;textarea&gt;&lt;/textarea&gt;</p>
+
+    </ul>
+    </section>
+
+    
 
 
 
 </body>
+
 
 </html>
