@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        table{
+            border: 1px;
+            border-color: brown;
+            border-style: solid;
+            width: 600px;
+            height: 400px;
+            margin:auto;
+            
+          /*  border-collapse: collapse; */
+
+        }
+
+        th,td{
+            border: 1px;
+            border-color: brown;
+            border-style: solid;
+
+        }
+
+        .CeldasGrandes{
+            background-color: rgb(74, 194, 242);
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <!--comentario  -->
+
+    <table>
+
+        <caption>Titulo</caption>
+
+        <thead>
+            <tr>
+                <th>hola 1</th>
+                <th>hola 2</th>
+                <th>hola 3</th>
+                
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td rowspan="3" class="CeldasGrandes">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        </tbody>
+
+        <tfoot class="CeldasGrandes">
+            <tr>
+                <td colspan="3" align="center">pie</td>
+            </tr>
+        </tfoot>
+
+        
+    </table>
+    
+</body>
+</html>

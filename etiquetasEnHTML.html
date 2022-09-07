@@ -1,16 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etiquetas en html</title>
+
+    <style type="text/css">
+        .Code {
+            font: normal 0.875rem/1.5rem "Fira Mono", "Source Code Pro", monospace;
+            word-wrap: break-word;
+            color: greenyellow;
+            background-color: black;
+            box-shadow: inset 0 0 0 1px rgb(0 0 0 / 15%);
+            border-radius: 0 0 2px 2px;
+            padding: 0.75rem;
+        }
+    </style>
+
 </head>
+
 <body>
 
     <h1>Etiquetas más comunes en HTML</h1>
 
     <h2>METADATOS DEL DOCUMENTO</h2>
-    
+
+    <ul>
+        <li> Representa una colección de metadatos acerca del documento, incluyendo enlaces a, o definiciones de,
+            scripts y hojas de estilo. El resto de etiquetas de metadatos, irán recogidas dentro de las etiquetas de
+            apertura y cierre del head. Importante explicar que estos metadatos del documento, es información para el
+            navegador y no contenido que será visible en la página web.</li>
+        <p class="Code">&lt;head&gt;&lt;/head&gt;</p>
+        <li>Etiqueta usada para definir el título de la página web.</li>
+        <p class="Code">&lt;title&gt;&lt;/title&gt;</p>
+        <li>Se usa para enlazar recursos externos al documento HTML. El ejemplo más común son las hojas de estilos CSS.
+        </li>
+        <p class="Code">&lt;link&gt;</p>
+        <li>Etiqueta usada para definir otros metadatos que no se pueden definir con una etiqueta HTML especifica. Por
+            ejemplo para definir el autor del sitio, o la descripción del mismo.</li>
+        <p class="Code">&lt;Meta&gt;</p>
+        <li>Etiquetas usadas para introducir código CSS en línea, es decir, en el propio documento HTML.</li>
+        <p class="Code">&lt;style&gt;&lt;/style&gt;</p>
+    </ul>
+
+    <h2>ETIQUETAS DE SECCIONES O PARA ESTRUCTURAR EL HTML</h2>
+    <ul>
+        <li>Todo lo que quieras mostrar en la página web debe ir recogido dentro de las etiquetas de apertura y cierre de:</li>
+        <p class="Code">&lt;body&gt;&lt;/body&gt;</p>
+        <li>Usadas para definir el contenido que será la sección de navegación de la web.</li>
+        <p class="Code">&lt;nav&gt;&lt;/nav&gt;</p>
+        <li>Se usa para definir el contenido principal del documento. Solamente puede existir uno por documento.</li>
+        <p class="Code">&lt;main&gt;&lt;/main&gt;</p>
+        <li>Define una sección del documento</li>
+        <p class="Code">&lt;section&gt;&lt;/section&gt;</p>
+        <li>Define contenido independiente de la web.</li>
+        <p class="Code">&lt;article&gt;&lt;/article&gt;</p>
+
+
+
+
+    </ul>
+
+
+
 </body>
+
 </html>
