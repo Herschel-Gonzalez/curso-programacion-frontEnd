@@ -12,17 +12,20 @@
     h1,
     h2 {
         text-align: center;
-        padding-right: 5cm;
+        padding-right: 0;
         padding-top: 0;
+        padding-left: 0;
 
     }
 
     .logoDerecho {
-        float: right;
+        position:absolute; top:10px;right: 60px;
+        
+        
     }
 
     .logoIzquierdo {
-        padding-right: 4cm;
+        position: absolute;top: 10px;left: 60px;
     }
 
     img {
@@ -41,11 +44,13 @@
     * {
         margin: 0px;
         padding: 0px;
+        font-family: 'Courier New', Courier, monospace;
     }
 
     #header {
+        padding-left: 160px;
         margin: auto;
-        width: 500px;
+        width: 700px;
         font-family: Arial, Helvetica, sans-serif;
     }
 
@@ -88,29 +93,53 @@
         right: -140px;
         top: 0px;
     }
+
+    .titulos{
+        padding-top:1cm ;
+        padding-bottom: 1cm;
+    }
+
+    .formulario{
+        padding-top: 2cm;
+        padding-left: 20cm;
+
+    }
+
+    button{
+
+        height: 1cm;
+        width: 5cm;
+        background-color: #000;
+        color: white;
+
+    }
+
+
 </style>
 
 <body>
 
 
+    <section class="titulos">
+
+        <h1>Sistema Integral De Planificación De Aplicaciones Web</h1>
+        <h2>Formación académica para la implementacioón de sitios web</h2>
+
+    </section>
+
+    <section class="logoIzquierdo">
+
+        <img id="sep" src="imagenes/sep-logo.jpeg" />
+
+    </section>
+
+    <section class="logoDerecho">
+
+        <img id="tecnm" src="imagenes/tecNMx.png" width="100px" height="100px"/>
+
+    </section>
 
 
-    <table>
-        <tr>
-            <td>
-                <div class="logoIzquierdo" id="iconoIzquierdo"><img id="sep" src="imagenes/sep-logo.jpeg" /></div>
-            </td>
-            <td>
-                <h1>Sistema Integral De Planificación De Aplicaciones Web</h1>
-                <h2>Formación académica para la implementacioón de sitios web</h2>
-            </td>
-            <td>
-                <div class="logoDerecho" id="iconoDerecho"><img id="tecnm" src="imagenes/tecNMx.png" /></div>
-            </td>
-        </tr>
-
-
-    </table>
 
     <div id="header">
         <ul class="nav">
@@ -160,6 +189,73 @@
         </li>
         </ul>
     </div>
+
+    <form class="formulario" action="/my-handling-form-page" method="post">
+        <h3>Registro de datos personales</h3>
+        <br>
+        <ul>
+         <li>
+           <label for="name">Nombre:</label>
+           <input type="text" id="name" name="user_name">
+         </li>
+         <br>
+         <li>
+            <label for="name">Primer apellido:</label>
+            <input type="text" id="name" name="user_name">
+          </li>
+          <br>
+          <li>
+            <label for="name">Segundo apellido:</label>
+            <input type="text" id="name" name="user_name">
+          </li>
+         <br>
+         <li>
+            <label for="name">Dirección:</label>
+            <input type="text" id="name" name="user_name">
+         </li>
+         <br>
+         <li>
+            <label for="name">Contraseña:</label>
+            <input type="password" id="name" name="user_name">
+         </li>
+         <br>
+         <li>
+           <label for="mail">Correo electrónico:</label>
+           <input type="email" id="mail" name="user_mail">
+         </li>
+         <br>
+         <li>
+            <label for="name">Genero:</label>
+            <br>
+            <br>
+            Masculino
+            <input type="radio" name ="gender" value="Masculino">
+            Femenino
+            <input type="radio" name ="gender" value="Masculino">
+         </li>
+         <br>
+         <li>
+            <p>Deporte:</p>
+            <br>
+            Futbol
+            <input type="checkbox" name ="deporte" value="Futbol">
+            <br>
+            <br>
+            Beis
+            <input type="checkbox" name ="deporte" value="Beis">
+            <br>
+            <br>
+            Basket
+            <input type="checkbox" name ="deporte" value="Basket">
+
+         </li>
+         <br>
+         <li class="botones">
+            <button>Enviar</button>
+            <button>Reset</button>
+         </li>
+        </ul>
+    </form>
 
 </body>
 
