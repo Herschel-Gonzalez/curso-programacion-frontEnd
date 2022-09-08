@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,40 +9,91 @@
 </head>
 
 <style>
-    h1,h2{
+    h1,
+    h2 {
         text-align: center;
         padding-right: 5cm;
         padding-top: 0;
 
     }
 
-    .logoDerecho{
-        float:right;
+    .logoDerecho {
+        float: right;
     }
 
-    .logoIzquierdo{
+    .logoIzquierdo {
         padding-right: 4cm;
     }
 
-    img{
-       width: 250px; 
+    img {
+        width: 250px;
     }
 
-    .consultar{
+    .consultar {
         padding-left: 2cm;
     }
 
-    .listar{
+    .listar {
         padding-left: 2cm;
     }
 
+    /* codigo del menu*/
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
 
+    #header {
+        margin: auto;
+        width: 500px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    ul,
+    ol {
+        list-style: none;
+    }
+
+    .nav>li {
+        float: left;
+    }
+
+    .nav li a {
+        background-color: #000;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 12px;
+        display: block;
+    }
+
+    .nav li a:hover {
+        background-color: #434343;
+    }
+
+    .nav li ul {
+        display: none;
+        position: absolute;
+        min-width: 140px;
+    }
+
+    .nav li:hover>ul {
+        display: block;
+    }
+
+    .nav li ul li {
+        position: relative;
+    }
+
+    .nav li ul li ul {
+        right: -140px;
+        top: 0px;
+    }
 </style>
 
 <body>
-    
-   
-    
+
+
+
 
     <table>
         <tr>
@@ -57,28 +109,58 @@
             </td>
         </tr>
 
-        <tr>
-            <td>
-                <div class="opcion">Registrar</div>    
-            </td>
-            <td>
-                <div class="opcion">Consultar</div>
-            </td>
-            <td>
-                <div class="opcion">Listar</div>
-            </td>
-            <td>
-                <div class="opcion">Registrar</div>
-            </td>
-            <td>
-                <div class="consultar">Consultar</div>
-            </td>
-            <td>
-                <div class="listar">Listar</div>
-            </td>
-        </tr>
 
     </table>
-    
+
+    <div id="header">
+        <ul class="nav">
+            <li><a href="">Usuarios</a>
+                <ul>
+                    <li><a href="">Consultar</a></li>
+                    <li><a href="">Listar</a></li>
+                    <li><a href="">Registrar</a></li>
+                </ul>
+            </li>
+            <li><a href="">Libros</a>
+                <ul>
+                    <li><a href="">Consultar</a></li>
+                    <li><a href="">Listar</a></li>
+                    <li><a href="">Registrar</a></li>
+                    
+            </li>
+        </ul>
+        </li>
+        <li><a href="">Revistas</a>
+            <ul>
+                <li><a href="">Consultar</a></li>
+                <li><a href="">Listar</a></li>
+                <li><a href="">Registrar</a></li>
+            </ul>
+        </li>
+        <li><a href="">Articulos</a>
+            <ul>
+                <li><a href="">Consultar</a></li>
+                <li><a href="">Listar</a></li>
+                <li><a href="">Registrar</a></li>
+            </ul>
+        </li>
+        <li><a href="">Periodicos</a>
+            <ul>
+                <li><a href="">Consultar</a></li>
+                <li><a href="">Listar</a></li>
+                <li><a href="">Registrar</a></li>
+            </ul>
+        </li>
+        <li><a href="">Noticias</a>
+            <ul>
+                <li><a href="">Consultar</a></li>
+                <li><a href="">Listar</a></li>
+                <li><a href="">Registrar</a></li>
+            </ul>
+        </li>
+        </ul>
+    </div>
+
 </body>
+
 </html>
