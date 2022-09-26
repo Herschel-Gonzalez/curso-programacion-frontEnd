@@ -5,31 +5,86 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="js/crud_array.js"></script>
+    
 </head>
 <body>
 
     <h2>CRUD en Array</h2>
 
+
     <label for="agregar">Agregar elemento: </label>
-    <input type="number">
-    <button>Agregar</button>
+    <input type="number" id="agregar">
+    <button onclick="agregar()">Agregar</button>
 
     <br>
     <br>
 
     <label for="consultar">Consultar elemento: </label>
-    <input type="number">
-    <button>Consultar</button>
+    <input type="number" id="consultar">
+    <button onclick="consultar()">Consultar</button>
+
+    <br>
+    <br>
+
+    <label for="modificar">Modificar elemento: </label>
+    <br>
+    <br>
+    <label for="aModificar">Elemento a modificar</label>
+    <input type="number" id="aModificar">
+    <label for="nuevo">Nuevo elemento</label>
+    <input type="number" id="nuevo">
+    <button onclick="modificar()">Modificar</button>
 
     <br>
     <br>
     
     <label for="eliminar">Eliminar elemento: </label>
-    <input type="number">
-    <button>Eliminar</button>
+    <input type="number" id="eliminar">
+    <button onclick="eliminar()">Eliminar</button>
+    <br>
+    <br>
     
+    <div id="tabla"></div>
+    <br>
+    <br>
+    <div id="mensajes" class="mensajes"></div>
     
     
 </body>
+<style>
+    html{
+        font-family: 'Courier New', Courier, monospace;
+    }
+     table{
+            border: 1px;
+            border-color: black;
+            border-style: solid;
+            width: 600px;
+            height: 400px;
+            margin:auto;
+            text-align: center;
+            
+          /*  border-collapse: collapse; */
+
+        }
+
+        th,td{
+            border: 1px;
+            border-color: black;
+            border-style: solid;
+
+        }
+        thead{
+            background-color: yellow;
+            color: black;
+        }
+
+        .mensajes{
+            color: red;
+            text-align: center;
+            size: 15px;
+        }
+
+</style>
+<script src="js/crud_array.js"></script>
 </html>
