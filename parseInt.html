@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        let nf = Number("");
+        let nx = parseInt("");
+
+        consola(nf);
+        consola(nx);
+
+        let ny = parseInt("-125");
+        let ny1 = parseInt("+125");
+        let ny2 = parseInt("   125");
+
+        escribir(ny);
+        escribir(ny1);
+        escribir(ny2);
+
+        let ny3 = parseInt("A125");
+        escribir(ny3);
+
+        let ny4 = parseInt("345A");
+        escribir(ny4);
+
+        let ny5 = parseInt("3.1436");
+        escribir(ny5);
+
+        let ny6 = parseInt("0xFF");
+        escribir(ny6);
+
+        let ny61 = parseInt(0xFF);
+        escribir(ny61);
+
+        let ny7 = parseInt(07743);
+        escribir(ny7);
+
+        let ny8 = parseInt("07743");
+        escribir(ny8);
+
+        let num1 = parseInt("1234blue"); // 1234
+        let num2 = parseInt(""); // NaN
+        let num3 = parseInt("0xA"); // 10 - hexadecimal
+        let num4 = parseInt(22.5); // 22
+        let num5 = parseInt("70"); // 70 - decimal
+        let num6 = parseInt("0xf"); // 15 - hexadecima
+
+        escribir("--------------------------------------------------");
+        let nm1 = parseInt("AF", 16); // 175
+        let nm2 = parseInt("AF"); // NaN
+        escribir(nm1);
+        escribir(nm2);
+        escribir("--------------------------------------------------");
+        let nm3 = parseInt("011", 2); 
+        let nm4 = parseInt("011"); 
+        escribir(nm3);
+        escribir(nm4);
+
+        let num1x = parseInt("10", 2); // 2 - parsed as binary
+        let num2x = parseInt("11", 8); // 8 - parsed as octal
+        let num3x = parseInt("10", 10); // 10 - parsed as decimal
+        let num4x = parseInt("11", 16); // 16 - parsed as hexadecima
+        escribir("--------------------------------------------------");
+        escribir(num1x);
+        escribir(num2x);
+        escribir(num3x);
+        escribir(num4x);
+
+
+    </script>
+</head>
+<body>
+
+    
+    
+</body>
+</html>

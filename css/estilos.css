@@ -1,3 +1,14 @@
 *{
     margin: 0px; 
 }
+
+.texto{
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    
+}
+h1{
+    font-family: 'Courier New', Courier, monospace;
+    color: royalblue;
+    text-align: center;
+}

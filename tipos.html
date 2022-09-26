@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/funciones.js"></script>
+    <script>
+        let message = undefined;
+        console.log(message===undefined);
+        escribir(message===undefined);
+        console.log(typeof message);
+        escribir(undefined===false);
+        let x=0;
+        if (x) {
+            escribir(x);
+        }else{
+            escribir("error");
+        }
+
+        let message1 = "";
+        let messageAsBoolean = Boolean(NaN);
+        escribir(messageAsBoolean);
+        let fecha = new Date();
+        if (fecha) {
+            escribir(fecha);
+        }else{
+            escribir("Error");
+        }
+
+        let car = null;
+        console.log(typeof car);
+
+    </script>
+</head>
+<body>
+
+
+    
+</body>
+</html>
