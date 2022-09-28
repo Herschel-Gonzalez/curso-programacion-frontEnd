@@ -43,6 +43,9 @@ function avanzarFoco(element,event) {
 
 
 
+
+
+
 function getDato(campo) {
     return document.getElementById(campo).value;
 }
