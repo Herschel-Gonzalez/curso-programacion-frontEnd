@@ -1,0 +1,11 @@
+#capaSalida{
+    width: 800px;
+    height: 200px;
+    background-color: yellow;
+    border: 1px;
+    border-style: solid;
+    visibility: hidden;
+    padding-left: 20px;
+    padding-top: 20px;
+    margin:auto;
+}

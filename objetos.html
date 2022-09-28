@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilosObjetos.css">
+    <title>Document</title>
+    
+</head>
+<body>
+    <h1>Registro de datos de alumnos</h1>
+    <input type="text" autofocus placeholder="Numero de control" id="numeroControl" onkeyup="avanzarFoco('nombre',event)">
+    <br>
+    <br>
+    <input type="text" placeholder="Nombre" id="nombre" onkeyup="avanzarFoco('paterno',event)">
+    <br>
+    <br>
+    <input type="text" placeholder="Apellido paterno" id="paterno" onkeyup="avanzarFoco('materno',event)">
+    <br>
+    <br>
+    <input type="text" placeholder="Apellido materno" id="materno" onkeyup="avanzarFoco('genero',event)">
+    <br>
+    <br>
+    <label for="genero" >Seleccione su genero</label>
+    <br>
+    <br>
+    <input type="radio" id="genero" value="femenino" name="genero" onkeyup="avanzarFoco('correo',event)">Femenino</input>
+    <input type="radio" id="genero" value="masculino" name="genero">Masculino</input>
+    <br>
+    <br>
+    <input type="email" placeholder="Correo" id="correo" onkeyup="avanzarFoco('fnacimiento',event)">
+    <br>
+    <br>
+    <input type="date" placeholder="Fecha de nacimiento" id="fnacimiento" ondblclick="avanzarFoco('agregar',event)">
+    <br>
+    <br>
+    <button id="agregar" onclick="agregar()">Agregar</button>
+    <br>
+    <br>
+    <div id="capaSalida"></div>
+
+<script src="js/objetos.js"></script>
+
+</body>
+</html>

@@ -22,8 +22,7 @@ function eliminar() {
     let numero = parseInt(campo.value);
 
     if (elementos.includes(numero)) {
-        let aux = elementos.filter((item) => item !== numero);
-        elementos = aux;
+        elementos = elementos.filter((item) => item !== numero);
         listar();
     }else{
         mensajes.innerHTML = "El elemento "+numero+" no existe en el array";
@@ -59,6 +58,14 @@ function modificar() {
     }else{
         mensajes.innerHTML = "El elemento "+numero+" no existe en el array";
     }
+}
+
+function ordenar() {
+
+   let aux =  elementos.sort();
+   elementos = aux;
+   listar();
+    
 }
 
 function listar() {
