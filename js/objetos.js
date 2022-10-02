@@ -51,13 +51,48 @@ function getDato(campo) {
 }
 
 function getListElements() {
-    let salida = "";
+  /*  let salida = "";
     for (let alumno of vec) {
         salida+=alumno+"<br>";
     }
     let capaSalida = document.getElementById("capaSalida");
     capaSalida.innerHTML = salida;
     visibilizarComponente();
+
+    */
+   let salida = "<table>";
+    for (let alumno of vec) {
+        salida+="<tr>";
+        salida+="<td>";
+        salida+=alumno.numeroControl;
+        salida+="</td>";
+        salida+="<td>";
+        salida+=alumno.nombre;
+        salida+="</td>";
+        salida+="<td>";
+        salida+=alumno.paterno;
+        salida+="</td>";
+        salida+="<td>";
+        salida+=alumno.materno;
+        salida+="</td>";
+        salida+="<td>";
+        salida+=alumno.genero;
+        salida+="</td>";
+        salida+="<td>";
+        salida+=alumno.correo;
+        salida+="</td>";
+        salida+="<td>";
+        salida+=alumno.fnacimiento;
+        salida+="</td>";
+        salida+="</tr>";
+    }
+    salida+="</table>";
+
+    let tabla = document.getElementById("tabla");
+    tabla.innerHTML = salida;
+
+
+
 }
 
 function visibilizarComponente() {
