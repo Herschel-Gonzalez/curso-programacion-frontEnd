@@ -1,3 +1,14 @@
+html{
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+.container{
+    display: flex;
+    width: 100vw;
+    flex-direction: row;
+}
+
 #capaSalida {
     width: 800px;
     height: 200px;
@@ -23,9 +34,54 @@ table{
 
 }
 
+.tabla{
+    padding-top: 1cm;
+    text-align: center;
+    width: 50%;
+    width: max-content;
+}
+
+.formulario{
+    width: 35%;
+
+}
+
+.acciones{
+    visibility: hidden;
+    width: max-content;
+    height: 1cm;
+    padding-left: 2cm;
+    padding-top: 1cm;
+
+}
+
+
+
 th,td{
     border: 1px;
     border-color: black;
     border-style: solid;
 
+}
+
+
+
+#eliminar{
+    visibility: visible;
+}
+
+#modificar{
+    visibility: visible;
+}
+
+#guardar{
+    visibility: hidden;
+}
+
+.entrada{
+    visibility: hidden;
+}
+
+.valores{
+    visibility: visible;
 }
