@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" id="estilo">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixeles</title>
+    <script src="unidad2.js"></script>
+    <style>
+
+        #estilo{
+
+            background-color: white;
+            color: black;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+    table{
+        border: 1px;
+        border-color: black;
+        border-style: solid;
+        width: 600px;
+        height: 400px;
+        margin:auto;
+        text-align: center;
+        
+    /*  border-collapse: collapse; */
+
+    }
+
+    th,td{
+        border: 1px;
+        border-color: black;
+        border-style: solid;
+
+    }
+
+    thead{
+        background-color: lightseagreen;
+    }
+
+    .nav {
+        float: left;
+    }
+
+    .nav{
+        background-color: white;
+        color: black;
+        text-decoration: none;
+        padding: 10px 12px;
+        display: inline-block;
+    }
+
+
+
+    #header {
+        padding-left: 160px;
+        margin: auto;
+        width: 700px;
+    }
+
+    #formulario{
+        visibility: hidden;
+        padding-top: 1cm;
+        padding-left: 1cm;
+    }
+
+    #mensajes{
+        visibility: visible;
+    }
+
+    </style>
+</head>
+<body>
+    <div id="header">
+        <ul class="nav">
+            <button onclick="generarFormulario()">Generar formulario</button>
+            <button onclick="quitarFormulario()">Quitar formulario</button>
+            <button onclick="listarPixeles()">Listar Pixeles</button>
+            <button onclick="cambiarEstilo()">Cambiar estilo</button>
+
+        </ul>
+        
+    </div>
+
+<div class="capa">
+    <div id="formulario">
+        <br>
+        <br>
+        <br>
+        <h3>Registro de pixel</h3>
+        <label for="color">Color </label>
+        <input type="text" required id="color">
+        <br>
+        <br>
+        <label for="x">Coordenada X </label>
+        <input type="number" required id="x">
+        <br>
+        <br>
+        <label for="y">Coordenada Y </label>
+        <input type="number" required id="y">
+        <button onclick="registrar()">Registrar Pixel</button>
+    </div>
+        
+
+
+    <div id="tabla"></div>
+
+    <div id="mensajes"></div>
+
+
+</div>
+
+</body>
+</html>

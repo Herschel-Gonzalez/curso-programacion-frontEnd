@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let book = {
+        "main-title": "Javascript",
+        "sub-title": "The definitive guide",
+        "for":"all audiences",
+        "author":"Herschel",
+        toString(){
+            return this["main-title"];
+        },
+        setSubtitulo(subtitulo){
+            this["sub-title"]=subtitulo;
+        }
+
+    }
+
+
+    function crearBook(libro) {
+        titulo  = libro["main-title"];
+        subtitulo  = libro["sub-title"];
+        para = libro["for"];
+        autor = libro["author"];
+
+        let libroNuevo = {
+            "main-title": titulo,
+            "sub-title": subtitulo,
+            "for":para,
+            "author":autor,
+            toString(){
+                return this["main-title"];
+            },
+            setSubtitulo(subtitulo){
+                this["sub-title"]=subtitulo;
+            }
+        }
+
+        return libroNuevo;
+
+
+    }
+
+    console.log(book.toString());
+    localStorage.setItem('book-funciones',JSON.stringify(book));
+
+
+
+    let libroRecuperado = JSON.parse(localStorage.getItem('book-funciones'));
+
+    let libroConFunciones = crearBook(libroRecuperado);
+
+    console.log("Recuperado ");
+    console.log(libroConFunciones.toString());
+/*
+    let estante = [];
+    estante.push(book);
+    estante.push(book2);
+
+    console.log(estante);
+
+    localStorage.setItem('estante',JSON.stringify(estante));
+
+    let estanteRecuperado = JSON.parse(localStorage.getItem('estante'));
+    console.log("Estante recuperado: ");
+    console.log(estanteRecuperado);
+*/
+
+</script>
+</html>

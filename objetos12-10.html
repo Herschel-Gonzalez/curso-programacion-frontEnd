@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+
+    <div id="capa"></div>
+    
+</body>
+<script>
+    //'use strict';
+
+    let book = {
+        "main-title": "Javascript",
+        "sub-title": "The definitive guide",
+        for:"all audiences",
+        author:{
+            firstname: "David gallajan",
+            surname: "flanagan"
+        }
+        
+    }
+
+    let mainTitle = book["main-title"];
+    /*let subTitle = book[""]
+
+    book.toString=function(){
+        return numeroControl+", "+nombre+", "+paterno+", "+materno+", "+genero+", "+correo+", "+fnacimiento;
+    }
+
+    */
+
+   // visualizar(book);
+escribir(book);
+console.log(book);
+    function visualizar(book) {
+        let capa = document.getElementById('capa');
+        let salida = "";
+        for (let item in book) {
+            if (typeof book[item]== "object") {
+                for (let item2 in book[item]) {
+                    salida+=book[item][item2]+"<br>";
+                }
+            }else{
+                salida+=book[item]+"<br>";
+
+            }
+        }
+        capa.innerHTML=salida;
+    }
+
+    function escribir(msg) {
+        if (typeof msg == 'object' && !Array.isArray(msg) && msg!=null && msg!='function') {
+            for (let item in msg) {
+                escribir(msg[item]);
+            }
+        }else{
+            document.write(msg+"<br>");
+        }
+    }
+    const object1 = {};
+    Object.defineProperty(object1,'property1',{
+        value:42,
+        writable: false
+    });
+    object1.property1 = 77;
+    console.log(object1.property1);
+    console.log(object1);
+
+    let digits = new Object();
+    for (let i of [0,1,2,3,4,5,6,7,8,9]) {
+        digits["digito"+i]=i;
+    }
+    console.log(digits);
+    console.log(digits.digito0);
+    console.log(digits.digito1);
+    console.log(digits.digito2);
+    console.log(digits.digito3);
+    console.log(digits.digito4);
+    console.log(digits["digito5"]);
+    console.log(digits["digito6"]);
+    console.log(digits["digito7"]);
+
+    //en otro script
+    function Book(isbn,title,author,editorial,edicion,idioma) {
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.editorial = editorial;
+        this.edicion = edicion;
+        this.idioma = idioma;
+
+        book.toString= function() {
+            return titulo.toUpperCase();
+        }
+    }
+
+    //let book = new Book("1111","JavaScript","Schidt","Pearson","1a","Español");
+</script>
+</html>
