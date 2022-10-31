@@ -1,33 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Nuevo Estado</title>
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/estilosOpciones.css">
 </head>
 <body>
 
     <h1 class="titulos">Crea un nuevo estado</h1>
-    <form class="agregarEstado" action=""> 
+    <div class="formulario">
         <pre>
-    Nombre: <input id="nombre" type="text">
-
-    Clave: <input id="clave" type="number">
-
-    Capital: <input id="capital" type="text">
-
-    Numero de habitantes <input id="habitantes" type="text">
-
-    Pueblos magicos: <input type="text">
-
-    Imagen: <input type="text">
-
-    <button>Guardar estado</button>
-
-        </pre>
+            Nombre: <input id="nombre" type="text">
         
-    </form>
+            Clave: <input id="clave" type="number">
+        
+            Capital: <input id="capital" type="text">
+        
+            Numero de habitantes <input id="habitantes" type="number">
+        
+            Pueblos magicos: <button id="open">Nuevo</button>
+        
+            Imagen del estado: <input type="file" id="imagenEstado" accept=".jpg, .jpeg, .png"><br>
+            Escudo del estado: <input type="file" id="imagenEscudo" accept=".jpg, .jpeg, .png">
+        
+            <button onclick="getImagenes()">Guardar estado</a></button>  <a href="index.html"><button>Regresar</button></a>
+            
+            <img src="" alt="">
+        
+            </pre>
+    </div>
+
+    <table id="tabla"></table>
+
+    
+
+    <div id="modal_container" class="modal-container">
+        <div class="modal">
+            <h1>Nuevo pueblo magico</h1>
+            <p>
+                Por favor llena todos los campos del formulario
+            </p>
+            Nombre: <input type="text" id="nombrePueblo"><br>
+            Fecha de la fiesta principal: <input type="date" id="fechaPueblo"><br>
+            Fiesta principal: <input type="text" id="fiestaPrincipal"><br><br>
+            <button id="close">Cerrar</button>
+            <button id="guardarPueblo" onclick="crearPuebloMagico()">Guardar</button>
+        </div>
+    </div>
+
 </body>
+<script src="js/index.js"></script>
 </html>
