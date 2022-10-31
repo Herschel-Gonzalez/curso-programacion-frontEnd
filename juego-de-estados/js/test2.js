@@ -3,6 +3,9 @@ let correcta = "";
 let opciones = [];
 let estadoCorrecto;
 
+iniciarJuego();
+generarTabla();
+
 
 function iniciarJuego() {
     let numEstados = parseInt(localStorage.getItem("numEstados"));
@@ -19,7 +22,6 @@ function iniciarJuego() {
 
     correcta = correcto.habitantes;
     console.log(correcta);
-
 
     //generamos las opciones
 
