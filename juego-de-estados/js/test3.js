@@ -18,7 +18,7 @@ function generarJuego() {
 
     estadoCorrecto = correcto;
 
-    correcta = correcto.nombre;
+    correcta = correcto.capital;
     console.log(correcta);
 
 
@@ -27,7 +27,7 @@ function generarJuego() {
     opciones.push(correcta);
 
     while (opciones.length < 4) {
-        let opcion = estados[Math.floor(Math.random() * estados.length)].nombre;
+        let opcion = estados[Math.floor(Math.random() * estados.length)].capital;
         if (!opciones.includes(opcion)) {
             opciones.push(opcion);
         }
@@ -44,7 +44,7 @@ function generarTabla() {
     let tabla = "<table>";
     tabla+="<tr>";
     tabla+="<td>";
-    tabla+="<h1>¿Que estado es el de la imagen?</h1>";
+    tabla+="<h1>¿Cual es la capital de este estado?</h1>";
     tabla+="</td>";
     tabla+="</tr>";
     tabla+="<tr>";
@@ -60,7 +60,7 @@ function generarTabla() {
     tabla+="</tr>";
     tabla+="<tr>";
     tabla+="<td>";
-    tabla+="<button onclick='siguiente()'>Siguiente</button>";
+    tabla+="<a href='index.html'><button>Salir del juego</button></a>   <button onclick='siguiente()'>Siguiente</button>";
     tabla+="</td>";
     tabla+="</tr>";
     tabla+="</table>";
@@ -70,26 +70,36 @@ function generarTabla() {
 
 function mostrarImagen() {
     let img = estadoCorrecto.imagenEstado;
-    let imagen = "<img src='"+img+"' alt='' width='400' height='400'>";
+    let imagen = "<img src='"+img+"' alt='' width='250' height='250'>";
     return imagen;
 }
 
 function mostrarOpciones() {
     let botones = "";
     for (let i = 0; i < opciones.length; i++) {
-        botones += "<button onclick='validar("+i+")'>"+opciones[i]+"</button><br><br>";
-
+        if (opciones[i]==correcta) {
+            botones += "<button id='open' onclick='validar("+i+")'>"+opciones[i]+"</button>     ";
+        }else{
+            botones += "<button id='openX' onclick='validar("+i+")'>"+opciones[i]+"</button>    ";
+        }
     }
-    return botones;
+    return botones+"<br><br>";
 }
 
 
 function validar(opcion) {
     let elegida = opciones[opcion];
     if (elegida==correcta) {
-        alert("¡Felicidades! es la respuesta correcta");
+        let alerta = "<h1>Felicidades! es la respuesta correcta</h1>";
+        alerta+="<p> <img src='img/bien.png' width='100' height='100'><p>";
+        alerta+='<button id="close">OK</button>';
+        crearAlerta(alerta);
     }else{
-        alert("Upps :( respuesta incorrecta");
+        //alert("Upps :( respuesta incorrecta");
+        let alerta = "<h1>Upps :( respuesta incorrecta</h1>";
+        alerta+="<p> <img src='img/wrong.png' width='100' height='100'><p>";
+        alerta+='<button id="close">OK</button>';
+        crearAlertaNegativa(alerta);
     }
 }
 
@@ -101,4 +111,44 @@ function siguiente() {
     estadoCorrecto;
     generarJuego();
     generarTabla();
+}
+
+function crearAlerta(contenido) {
+    let alerta = document.getElementById("alerta");
+    alerta.innerHTML=contenido;
+
+    const open = document.getElementById('open');
+    const modal_container = document.getElementById('modal_container');
+    const close = document.getElementById('close');
+    
+    open.addEventListener('click', () => {
+        modal_container.classList.add('show');
+    });
+    
+    close.addEventListener('click', () => {
+        modal_container.classList.remove('show');
+    });
+
+    document.getElementById("open").click();
+
+}
+
+function crearAlertaNegativa(contenido) {
+    let alerta = document.getElementById("alerta");
+    alerta.innerHTML=contenido;
+
+    const open = document.getElementById('openX');
+    const modal_container = document.getElementById('modal_container');
+    const close = document.getElementById('close');
+    
+    open.addEventListener('click', () => {
+        modal_container.classList.add('show');
+    });
+    
+    close.addEventListener('click', () => {
+        modal_container.classList.remove('show');
+    });
+
+    document.getElementById("openX").click();
+
 }

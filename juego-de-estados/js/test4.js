@@ -3,11 +3,9 @@ let correcta = "";
 let opciones = [];
 let estadoCorrecto;
 
-iniciarJuego();
+generarJuego();
 generarTabla();
-
-
-function iniciarJuego() {
+function generarJuego() {
     let numEstados = parseInt(localStorage.getItem("numEstados"));
     let estados = [];
 
@@ -20,15 +18,16 @@ function iniciarJuego() {
 
     estadoCorrecto = correcto;
 
-    correcta = correcto.habitantes;
+    correcta = correcto.imagenEscudo;
     console.log(correcta);
+
 
     //generamos las opciones
 
     opciones.push(correcta);
 
     while (opciones.length < 4) {
-        let opcion = estados[Math.floor(Math.random() * estados.length)].habitantes;
+        let opcion = estados[Math.floor(Math.random() * estados.length)].imagenEscudo;
         if (!opciones.includes(opcion)) {
             opciones.push(opcion);
         }
@@ -36,20 +35,21 @@ function iniciarJuego() {
 
     console.log(opciones);
 
-}
 
+
+}
 
 function generarTabla() {
     let table = document.getElementById("tabla");
     let tabla = "<table>";
     tabla+="<tr>";
     tabla+="<td>";
-    tabla+="<h1>¿Cual es el numero de habitantes de este estado?</h1>";
+    tabla+="<h1>¿Cual es el escudo del siguiente estado?</h1>";
     tabla+="</td>";
     tabla+="</tr>";
     tabla+="<tr>";
     tabla+="<td>";
-    tabla+="<h2>"+estadoCorrecto.nombre+"</h2>";
+    tabla+=estadoCorrecto.nombre;
     tabla+="</td>";
     tabla+="</tr>";
     tabla+="<tr>";
@@ -75,7 +75,7 @@ function generarTabla() {
 
 function mostrarImagen() {
     let img = estadoCorrecto.imagenEstado;
-    let imagen = "<img src='"+img+"' alt='' width='250' height='250'>";
+    let imagen = "<img src='"+img+"' alt='' width='200' height='200'>";
     return imagen;
 }
 
@@ -83,18 +83,21 @@ function mostrarOpciones() {
     let botones = "";
     for (let i = 0; i < opciones.length; i++) {
         if (opciones[i]==correcta) {
-            botones += "<button id='open' onclick='validar("+i+")'>"+opciones[i]+"</button> ";
+            //botones += "<button id='open' onclick='validar("+i+")'>"+opciones[i]+"</button><br><br>";
+            botones+="<img id ='open' src='"+opciones[i]+"' alt='' width='100' height='100' onclick='validar("+i+")' >";
         }else{
-            botones += "<button id='openX' onclick='validar("+i+")'>"+opciones[i]+"</button>    ";
+            //botones += "<button id='openX' onclick='validar("+i+")'>"+opciones[i]+"</button><br><br>";
+            botones+="<img id ='openX' src='"+opciones[i]+"' alt='' width='100' height='100' onclick='validar("+i+")' >";
         }
     }
-    return botones+"<br><br>";
+    return botones;
 }
+
 
 function validar(opcion) {
     let elegida = opciones[opcion];
     if (elegida==correcta) {
-       // alert("¡Felicidades! es la respuesta correcta");
+        //alert("felicidades es la respuesta correcta");
         let alerta = "<h1>Felicidades! es la respuesta correcta</h1>";
         alerta+="<p> <img src='img/bien.png' width='100' height='100'><p>";
         alerta+='<button id="close">OK</button>';
@@ -108,12 +111,13 @@ function validar(opcion) {
     }
 }
 
+
 function siguiente() {
     imagen = "";
     correcta = "";
     opciones = [];
     estadoCorrecto;
-    iniciarJuego();
+    generarJuego();
     generarTabla();
 }
 

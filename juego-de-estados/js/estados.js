@@ -3,9 +3,10 @@
 
 
     
-let cambioImagenEstado = false;
-let cambioImagenEscudo = false;
+let cambioImgEstado = false;
+let cambioImgEscudo = false;
 listarEstados();
+
 
 
 
@@ -41,7 +42,12 @@ function eliminarPueblo(key) {
     localStorage.removeItem(key);
     let mensaje = "<h1>Se elimino correctamente el estado</h1>";
     mensaje+='<button id="close">OK</button>';
+    let numestados =  parseInt(localStorage.getItem("numEstados"));
+    numestados=numestados-1;
+    localStorage.setItem("numEstados",numestados);
     crearAlerta(mensaje);
+    listarEstados();
+
 }
 
 function crearAlerta(contenido) {
@@ -122,13 +128,15 @@ function modificar(key) {
             tabla+=pueblosComoBoton(i);
             tabla+="</td>";
             tabla+="<td>";
-            tabla+=getImagen(elemento.imagenEstado,"idEstado"+i.toString())+"<br>"+"<button id='-"+i.toString()+"' onclick='nuevaImagen(-"+(i.toString())+")'>Nueva</button>";
+            tabla+=getImagen(elemento.imagenEstado,"idEstado"+i.toString())+"<br>"+"<button id='-"+i.toString()+"' onclick='nuevaImagen(-"+i+")'>Nueva</button>";
+            tabla+="<div id='-"+(i+"file")+"'></div>";
             tabla+="</td>";
             tabla+="<td>";
             tabla+=getImagen(elemento.imagenEscudo,"idEscudo"+i.toString())+"<br>"+"<button id='"+i+"' onclick='nuevaImagen("+i+")'>Nueva</button>";
+            tabla+="<div id='"+(i+"file")+"'></div>";
             tabla+="</td>";
             tabla+="<td>";
-            tabla+='<button onclik="getImagenes('+i+')">Guardar</button><br><br>';
+            tabla+='<button onclick="getImagenes('+i+')">Guardar</button><br><br>';
             tabla+='<button onclick="listarEstados()">Cancelar</button>';
             tabla+="</td>";
             tabla+="</tr>";
@@ -199,8 +207,8 @@ function modificarPuebloMagico(key,numPueblo) {
 }
 
 function listarEstados() {
-    cambioImagenEstado = false;
-    cambioImagenEscudo = false;
+    cambioImgEstado = false;
+    cambioImgEscudo = false;
     let docTabla = document.getElementById("tabla");
     let tabla = "<table>";
     tabla+="<thead>";
@@ -274,16 +282,20 @@ function listarEstados() {
 
 function nuevaImagen(key) {
 
-    let boton = document.getElementById(key);
-
     let llave = key+"";
 
+    console.log(llave+"file");
+
+    let boton = document.getElementById(llave+"file");
+
+    
+
     if (llave[0]=='-') {
-        boton.innerHTML='<input type="file" id="estadoIMG" accept=".jpg, .jpeg, .png">';
-        cambioImagenEstado = true;
+        boton.innerHTML='<input type="file" id="idEstado'+llave+'" accept=".jpg, .jpeg, .png">';
+        cambioImgEstado = true;
     }else{
-        boton.innerHTML='<input type="file" id="escudoIMG" accept=".jpg, .jpeg, .png">';
-        cambioImagenEscudo = true;
+        boton.innerHTML='<input type="file" id="idEscudoNuevo'+llave+'" accept=".jpg, .jpeg, .png">';
+        cambioImgEscudo = true;
     }
 
 
@@ -293,27 +305,16 @@ function nuevaImagen(key) {
 }
 
 function guardarModificado(key) {
+    
     let llave = key+"";
-    let estado = localStorage.getItem(key);
+    let estado = JSON.parse(localStorage.getItem(key));
     let nombre = document.getElementById("nombreM").value;
     let clave = document.getElementById("claveM").value;
     let capital = document.getElementById("capitalM").value;
     let habitantes = document.getElementById("habitantesM").value;
     let pueblos = estado.pueblos;
-    let imageEstado;
-    let imageEscudo;
-
-    if (imagenes.length>0) {
-        imageEstado = imagenes[0];
-        if (imagenes.length>1) {
-            imageEscudo = imagenes[1];
-        }else{
-            imageEscudo =  estado.imagenEscudo;
-        }
-    }else{
-        imageEstado =  estado.imagenEstado;
-        imageEscudo =  estado.imagenEscudo;
-    }
+    let imageEstado = imagenes[0];
+    let imageEscudo = imagenes[1];;
 
     let estadoModificado = {
         clave: clave,
@@ -325,26 +326,62 @@ function guardarModificado(key) {
         imagenEscudo: imageEscudo
     }
 
-    console.log(estadoModificado);
-
     console.log("modificado");
+
+    console.log(estadoModificado);
+    localStorage.setItem(key,JSON.stringify(estadoModificado));
+    //alert("se actualizo con exito");
+    let alerta = "<h2>Se actualizo con exito<h2>";
+    alerta+="<p><img src='img/bien.png' width='100' height='100'></p>";
+    alerta+="<button id='close'>OK</button>";
+    crearAlerta(alerta);
+    listarEstados();
+
+
+    
     
 
 }
 
 function getImagenes(key) {
+
+    //console.log('idEstado'+key);
+
+    //let dimgEstado = document.getElementById('idEstado'+key).files[0];
+
+    //if ((document.getElementById('idEstado-'+key).files[0])==null) {
+      //  console.log(null);
+    //}
+
+    let estadoimg = "";
+    let escudoimg = "";
+    imagenes = [];
+
+    let estadOriginal = document.getElementById('idEstado'+key).src;
+    let escudOriginal = document.getElementById('idEscudo'+key).src;
+
     
-
-    if (cambioImagenEstado==true) {
-        let dimgEstado = document.getElementById('estadoIMG').files[0];
-        readImage(dimgEstado,key);
-        
+    if (cambioImgEstado==true) {
+        let es = document.getElementById('idEstado-'+key).files[0];
+        readImage(es,key);
     }
 
-    if (cambioImagenEscudo==true) {
-        let dimgEscudo = document.getElementById('escudoIMG').files[0];
-        readImage(dimgEscudo,key);
+    console.log('idEscudoNuevo'+key);
+
+    if (cambioImgEscudo==true) {
+        let esc = document.getElementById('idEscudoNuevo'+key).files[0];
+        readImage(esc,key);
     }
+
+    if (cambioImgEstado==false && cambioImgEscudo==false) {
+        imagenes.push(estadOriginal);
+        imagenes.push(escudOriginal);
+        guardarModificado(key);
+    }
+
+   // if ((document.getElementById('idEscudo'+key).value)==undefined) {
+      //  console.log(document.getElementById('idEscudo'+key));
+   // }
 
 
     
@@ -362,16 +399,30 @@ function readImage(file,key) {
   
     const reader = new FileReader();
     reader.addEventListener('load', (event) => {
-        imagenes.push(event.target.result);
+        
         prueba = event.target.result;
-        console.log(cambioImagenEstado);
-        if (cambioImagenEscudo==true && cambioImagenEstado==true){
+
+        let estadOriginal = document.getElementById('idEstado'+key).src;
+        let escudOriginal = document.getElementById('idEscudo'+key).src;
+        
+        if (cambioImgEstado==true && cambioImgEscudo==true) {
+            imagenes.push(event.target.result);
             if (imagenes.length==2) {
                 guardarModificado(key);
             }
-        }else{
-            previsualizarCambioDeImagen(prueba,"idEstado"+key);
-            console.log(prueba);
+        }
+        
+        if (cambioImgEstado==true && cambioImgEscudo==false) {
+            imagenes.push(event.target.result);
+            imagenes.push(escudOriginal);
+            guardarModificado(key);
+            
+
+        }
+
+        if (cambioImgEstado==false && cambioImgEscudo==true) {
+            imagenes.push(estadOriginal);
+            imagenes.push(event.target.result);
             guardarModificado(key);
         }
 
