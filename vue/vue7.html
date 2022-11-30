@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+<div id="shopping-list">
+<h1>{{header||"welcome"}}</h1>
+<input v-model="header">
+<ul>
+    <li v-for="item in items">
+        {{item.id+item.label}}
+    </li>
+</ul>
+</div>
+<script>
+    Vue.createApp({
+        data(){
+            return { 
+                header:"Welcome to Vue JS",
+                items: [
+                    {
+                        id:0,
+                        label:"10 tablets"
+                    },
+                    {
+                        id:1,
+                        label:"5 notebooks"
+                    },
+                    {
+                        id:2,
+                        label:"7 cellphones"
+
+                    }
+                ]
+            };
+        }
+    }).mount("#shopping-list");
+    
+    
+    
+</script>
+    
+</body>
+</html>

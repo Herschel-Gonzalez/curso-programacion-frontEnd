@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+
+<style>
+    .strikeout {
+        text-decoration: line-through;
+    }
+
+    .priority {
+        color: orange;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+    }
+
+    ul {
+        width: 200px;
+        margin: auto;
+    }
+
+    .text-blue{
+            color:blue;
+        }
+        .underline{
+            text-decoration: underline;
+        }
+    .text-size{
+        font-size: 2em;
+    }
+
+</style>
+<body>
+
+<div id="books-list">
+        <div class="header">
+            <h1>{{header || "Welcome"}}</h1>
+            <button v-if="editing" @click="doAdd(false)" class="btn btn-danger">Cancelar</button>
+            <button v-else @click="doAdd(true)" class="btn btn-primary">Agregar libro</button>
+        </div>
+        <div v-if="editing" class="add-item-form">
+            <input v-model="newTitulo" type="text" placeholder="Titulo">
+            <input v-model="newISBN" type="number" placeholder="ISBN">
+            <input v-model="newEdicion" type="text" placeholder="Edicion">
+            <input @keyup.enter="saveItem" v-model="newEditorial" type="text" placeholder="Editorial">
+            <!--<label><input type="checkBox" v-model="newItemHightPriority" />Hight Priority</label>-->
+            <button @click="saveItem" class="btn btn-primary" v-bind:disabled="validarCajas()">Guardar libro</button>
+        </div>
+
+        {{newItemPriority}}
+
+        <p v-if="this.exists()">
+            {{message}}
+        </p>
+
+        <p v-if="items.length==0">
+            La lista de productos esta vacia
+        </p>
+
+        
+
+        <ul>
+            <li v-for="item in items" :key="item.isbn" 
+            :class="[
+                  {strikeout:item.purchased},
+                  {priority:item.hightPriority},
+                  'text-size'
+                  ]"
+                class="list-group-item">{{item.titulo}}</li>
+        </ul>
+
+
+</div>
+
+<script>
+    const shoopingList = Vue.createApp({
+        data() {
+            return {
+                header: "Libros",
+                newISBN: "",
+                newTitulo:"",
+                newEdicion:"",
+                newEditorial:"",
+                message:"",
+                editing:false,
+                items: [
+                    {isbn:'123',titulo:'Luna de pluton',edicion:'tercera',editorial:'Omega',purchased:true,hightPriority:false}
+                ]
+            }
+        },
+            methods:{
+                saveItem(){
+
+                    if(this.newISBN && !this.exists()){
+                        this.items.push({isbn:this.newISBN, titulo:this.newTitulo,edicion:this.newEdicion,editorial:this.newEditorial}); 
+                        this.newISBN = ""; 
+                        this.newTitulo = ""; 
+                        this.newEdicion = ""; 
+                        this.newEditorial = ""; 
+                    }
+                    else{
+                        this.message = this.newISBN!=null?"este item ya existe":" ";
+                       // this.newItem="Cadena vacia o ya contiene el item";
+                    }
+                   
+                },
+                exists() {
+                    return this.items.some(element=>element.isbn==this.newISBN);
+                },
+                doAdd(editing){
+                    this.editing = editing;
+                    this.newISBN = ""; 
+                    this.newTitulo = ""; 
+                    this.newEdicion = ""; 
+                    this.newEditorial = "";
+                },
+                validarCajas(){
+                    if (this.newISBN.length==0 && this.newTitulo.length==0 && this.newEdicion.length==0 && this.newEditorial.length==0) {
+                        return true;
+                    }
+                    if (this.newISBN.length>0 && this.newTitulo.length>0 && this.newEdicion.length>0 && this.newEditorial.length>0) {
+                        return false;
+                    }
+                }
+            }
+    }).mount("#books-list");
+</script>
+    
+</body>
+</html>

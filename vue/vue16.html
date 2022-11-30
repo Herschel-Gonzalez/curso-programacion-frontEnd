@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+
+<style>
+    .strikeout {
+        text-decoration: line-through;
+    }
+
+    .priority {
+        color: orange;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+    }
+
+    ul {
+        width: 200px;
+        margin: auto;
+    }
+
+    .text-blue{
+            color:blue;
+        }
+        .underline{
+            text-decoration: underline;
+        }
+
+</style>
+<body>
+
+<div id="shopping-list">
+        <div class="header">
+            <h1>{{header || "Welcome"}}</h1>
+            <button v-if="editing" @click="doEdit(false)" class="btn btn-danger">Cancel</button>
+            <button v-else @click="doEdit(true)" class="btn btn-primary">Add item</button>
+        </div>
+        <div v-if="editing" class="add-item-form">
+            <input @keyup.enter="saveItem" v-model="newItem" type="text" placeholder="Add an item">
+            <!--<label><input type="checkBox" v-model="newItemHightPriority" />Hight Priority</label>-->
+            <button @click="saveItem" class="btn btn-primary" v-bind:disabled="newItem.length==0">Save item</button>
+        </div>
+
+        {{newItemPriority}}
+
+        <p v-if="this.exists()">
+            {{message}}
+        </p>
+
+        <p v-if="items.length==0">
+            La lista de productos esta vacia
+        </p>
+
+        
+
+        <ul>
+            <li v-for="item in items" :key="item.id" 
+            :class="[
+                  item.purchased?'strikeout text-blue':'underline', 
+                  item.hightPriority?'priority':''
+                  ]"
+                class="list-group-item">{{item.label}}</li>
+        </ul>
+
+
+        <a v-bind:href="newItem">Dinamic link</a>
+</div>
+
+<script>
+    const shoopingList = Vue.createApp({
+        data() {
+            return {
+                header: "Shooping List App",
+                newItem: "",
+                newItemPriority: "low",
+                message:"",
+                editing:false,
+                items: [
+                   { id: 1, label: "10 Party hats",purchased:true,hightPriority:false },
+                    { id: 2, label: "2 Board games",purchased:true,hightPriority:false  }
+                    , { id: 3, label: "20 Cups",purchased:false,hightPriority:true  }
+                ]
+            }
+        },
+            methods:{
+                saveItem(){
+
+                    if(this.newItem && !this.exists()){
+                        this.items.push({id:this.items.length +1, label:this.newItem}); 
+                        this.newItem = ""; 
+                    }
+                    else{
+                        this.message = this.newItem!=null?"este item ya existe":" ";
+                       // this.newItem="Cadena vacia o ya contiene el item";
+                    }
+                   
+                },
+                exists() {
+                    return this.items.some(element=>element.label==this.newItem);
+                },
+                doEdit(editing){
+                    this.editing = editing;
+                    this.newItem = "";
+                }
+            }
+    }).mount("#shopping-list");
+</script>
+    
+</body>
+</html>

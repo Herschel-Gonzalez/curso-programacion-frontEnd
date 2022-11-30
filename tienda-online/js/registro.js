@@ -10,7 +10,7 @@ function crearUsuario() {
         nombre: nombre,
         correo: correo,
         password: password,
-        tipo: "cliente"
+        tipo: "admin"
     }
 
     usuarios.push(usuario);

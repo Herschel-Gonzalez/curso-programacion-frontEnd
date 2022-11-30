@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+<div id="shopping-list">
+        <h1>{{header || "Welcome"}}</h1>
+        <input v-model.lazy="newItem" type="text" placeholder="Add an item">
+        <br>
+        {{newItem}}
+        <br>
+        <label> <input type="radio" value="low" v-model="newItemPriority">Low</label>
+        <label> <input type="radio" value="hight" v-model="newItemPriority">Hight</label>
+        <br>
+        {{newItemPriority}}
+
+        <ul>
+            <li v-for="item in items" :key="item.id">{{item.label}}</li>
+        </ul>
+</div>
+
+<script>
+    const shoopingList = Vue.createApp({
+        data() {
+            return {
+                header: "Shooping List App",
+                newItem: "",
+                newItemPriority: "low",
+                items: [
+                    { id: 1, label: "10 Party hats" },
+                    { id: 2, label: "2 Board games" }
+                    , { id: 3, label: "20 Cups" }
+                ]
+            }
+        }
+    }).mount("#shopping-list");
+</script>
+    
+</body>
+</html>
