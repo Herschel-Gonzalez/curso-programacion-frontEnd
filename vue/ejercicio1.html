@@ -48,7 +48,7 @@
         </div>
         <div v-if="editing" class="add-item-form">
             <input v-model="newTitulo" type="text" placeholder="Titulo">
-            <input v-model="newISBN" type="number" placeholder="ISBN">
+            <input v-model="newISBN" type="number" placeholder="ISBN" id="isbn">
             <input v-model="newEdicion" type="text" placeholder="Edicion">
             <input @keyup.enter="saveItem" v-model="newEditorial" type="text" placeholder="Editorial">
             <!--<label><input type="checkBox" v-model="newItemHightPriority" />Hight Priority</label>-->
@@ -81,27 +81,77 @@
             </thead>
             <tbody class="table-group-divider">
               <tr v-for="item in items" :key="item.isbn" :class="[{strikeout:item.purchased}]">
-                  <td>{{item.isbn}} <input type="number" v-if="editing" value="item.isbn"></td>
-                  <td> {{item.titulo}}</td>
-                  <td> {{item.edicion}}</td>
-                  <td> {{item.editorial}}</td>
-                  <td> <button @click="editar()" class="btn btn-warning" >Modificar</button> <button class="btn btn-danger" @click="eliminar(item.isbn)">Eliminar</button></td>
+                  <td><input type="number" :id="item.isbn+varisbn" disabled="true" :value="item.isbn"></td>
+                  <td> <input type="text" :id="item.isbn+vartitulo" disabled="true" :value="item.titulo"></td>
+                  <td> <input type="text" :id="item.isbn+varedicion" disabled="true" :value="item.edicion"></td>
+                  <td> <input type="text" :id="item.isbn+vareditorial" disabled="true" :value="item.editorial"></td>
+                  <td> <button @click="editar(item.isbn)" class="btn btn-warning" >Modificar</button> <button class="btn btn-danger" @click="eliminar(item.isbn)">Eliminar</button> <br><br><button :id="item.isbn+guardarCambios" style="display:none ;" class="btn btn-primary" @click="update(item.isbn,item.titulo,item.edicion,item.editorial)">Guardar cambios</button></td>
               </tr>
 
             </tbody>
 
         </table>
 
+</div>
 
+<div id="users-list">
+    <div class="header">
+        <h1>{{header || "Welcome"}}</h1>
+        <button v-if="editingUsers" @click="doAddUsers(false)" class="btn btn-danger">Cancelar</button>
+        <button v-else @click="doAddUsers(true)" class="btn btn-primary">Agregar usuario</button>
+    </div>
+    <div v-if="editingUsers" class="add-item-form">
+        <input v-model="newNombre" type="text" placeholder="Nombre">
+        <input v-model="newPaterno" type="text" placeholder="Apellido Paterno">
+        <input v-model="newCorreo" type="email" placeholder="Correo">
+        <input @keyup.enter="saveUser" v-model="newPassword" type="password" placeholder="Contraseña">
+        <!--<label><input type="checkBox" v-model="newItemHightPriority" />Hight Priority</label>-->
+        <button @click="saveUser" class="btn btn-primary" v-bind:disabled="validarCajasUser()">Guardar usuario</button>
+    </div>
 
-          
+    {{newItemPriority}}
 
+    <p v-if="this.existsUser()">
+        {{messageUsers}}
+    </p>
 
+    <p v-if="users.length==0">
+        La lista de usuarios esta vacia
+    </p>
+
+    
+
+    
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Correo</th>
+            <th>Nombre</th>
+            <th>Paterno</th>
+            <th>Contraseña</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr v-for="user in users" :key="user.correo">
+              <td><input type="text" :id="user.correo+idCorreo" disabled="true" :value="user.correo"></td>
+              <td> <input type="text" :id="user.correo+idNombre" disabled="true" :value="user.nombre"></td>
+              <td> <input type="text" :id="user.correo+idPaterno" disabled="true" :value="user.paterno"></td>
+              <td> <input type="text" :id="user.correo+idPassword" disabled="true" :value="user.password"></td>
+              <td> <button @click="editarUser(user.correo)" class="btn btn-warning" >Modificar</button> <button class="btn btn-danger" @click="eliminar(item.isbn)">Eliminar</button> <br><br><button :id="user.correo+idGuardarCambios" style="display:none ;" class="btn btn-primary" @click="update(item.isbn,item.titulo,item.edicion,item.editorial)">Guardar cambios</button></td>
+          </tr>
+
+        </tbody>
+
+    </table>
 
 </div>
 
 <script>
+    
     const shoopingList = Vue.createApp({
+        
         data() {
             return {
                 header: "Libros",
@@ -113,9 +163,18 @@
                 editing:false,
                 items: [
                 {isbn:'123',titulo:'Luna de pluton',edicion:'tercera',editorial:'Omega',purchased:true,hightPriority:false}
-                ]
+                ],
+                varisbn:"isbn",
+                vartitulo:"titulo",
+                varedicion:"edicion",
+                vareditorial:"editorial",
+                guardarCambios:"guardarCambios",
+                editingUsers:false,
+                messageUsers:"",
+                users:[{correo:'herschel@gmail.com',nombre:'herschel',paterno:'gonzalez',password:'her888'}]
             }
         },
+
             methods:{
                 saveItem(){
 
@@ -163,8 +222,85 @@
 
                    // console.log(this.items);
                 },
-                editar(){
-                    this.editing = true;
+                editar(isbn){
+                    let capaisbn = document.getElementById(isbn+'isbn');
+                    let titulo = document.getElementById(isbn+'titulo');
+                    let edicion = document.getElementById(isbn+'edicion');
+                    let editorial = document.getElementById(isbn+'editorial');
+                    let guardarCambios = document.getElementById(isbn+'guardarCambios');
+                    capaisbn.disabled=false;
+                    titulo.disabled=false;
+                    edicion.disabled=false;
+                    editorial.disabled=false;
+                    guardarCambios.style.display='block';
+                    
+                },
+                update(isbn,titulo,edicion,editorial){
+                    let isbnNuevo = document.getElementById(isbn+'isbn').value;
+                    let tituloNuevo = document.getElementById(isbn+'titulo').value;
+                    let edicionNuevo = document.getElementById(isbn+'edicion').value;
+                    let editorialNuevo = document.getElementById(isbn+'editorial').value;
+                    let posicion = 0;
+                    let auxItems = this.items;
+
+                    for (const book of this.items) {
+                        console.log(this.isbn);
+                        if (book.isbn==isbn) {
+                            auxItems[posicion].isbn=isbnNuevo;
+                            auxItems[posicion].titulo=tituloNuevo;
+                            auxItems[posicion].edicion=edicionNuevo;
+                            auxItems[posicion].editorial=editorialNuevo;
+                        }
+                        posicion++;
+                    }
+                    this.items = auxItems;
+                    console.log(this.items);
+                },
+                doAddUsers(editing){
+                    this.editingUsers = editing;
+                    this.newNombre = ""; 
+                    this.newPaterno = ""; 
+                    this.newCorreo = ""; 
+                    this.newPassword = "";
+                },
+                validarCajasUser(){
+                    let desactivarCajas = true;
+                    //console.log(this.newISBN.length);
+                    if (this.newNombre.length!=0 && this.newPaterno.length!=0 && this.newCorreo.length!=0 && this.newPassword.length!=0) {
+                        desactivarCajas = false;
+                    }
+                    return desactivarCajas;
+                },
+                saveUser(){
+
+                    if(this.newCorreo && !this.existsUser()){
+                        this.users.push({nombre:this.newNombre, paterno:this.newPaterno,correo:this.newCorreo,password:this.newPassword}); 
+                        this.newNombre = ""; 
+                        this.newPaterno = ""; 
+                        this.newCorreo = ""; 
+                        this.newPassword = ""; 
+                    }
+                    else{
+                        this.messageUsers = this.newCorreo!=null?"este item ya existe":" ";
+                    // this.newItem="Cadena vacia o ya contiene el item";
+                    }
+
+                },
+                existsUser() {
+                    return this.users.some(element=>element.correo==this.newCorreo);
+                },
+                editarUser(correo){
+                    let capaCorreo = document.getElementById(correo+'idCorreo');
+                    let nombre = document.getElementById(correo+'idNombre');
+                    let paterno = document.getElementById(correo+'idPaterno');
+                    let password = document.getElementById(correo+'idPassword');
+                    let guardarCambios = document.getElementById(correo+'idGuardarCambios');
+                    capaCorreo.disabled=false;
+                    nombre.disabled=false;
+                    paterno.disabled=false;
+                    password.disabled=false;
+                    guardarCambios.style.display='block';
+                    
                 }
 
             }
