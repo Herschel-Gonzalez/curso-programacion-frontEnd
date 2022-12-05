@@ -104,7 +104,7 @@
         <input v-model="newNombre" type="text" placeholder="Nombre">
         <input v-model="newPaterno" type="text" placeholder="Apellido Paterno">
         <input v-model="newCorreo" type="email" placeholder="Correo">
-        <input @keyup.enter="saveUser" v-model="newPassword" type="password" placeholder="Contraseña">
+        <input @keyup.enter="saveUser" v-model="newPassword" type="password" placeholder="Password">
         <!--<label><input type="checkBox" v-model="newItemHightPriority" />Hight Priority</label>-->
         <button @click="saveUser" class="btn btn-primary" v-bind:disabled="validarCajasUser()">Guardar usuario</button>
     </div>
@@ -139,7 +139,7 @@
               <td> <input type="text" :id="user.correo+idNombre" disabled="true" :value="user.nombre"></td>
               <td> <input type="text" :id="user.correo+idPaterno" disabled="true" :value="user.paterno"></td>
               <td> <input type="text" :id="user.correo+idPassword" disabled="true" :value="user.password"></td>
-              <td> <button @click="editarUser(user.correo)" class="btn btn-warning" >Modificar</button> <button class="btn btn-danger" @click="eliminar(item.isbn)">Eliminar</button> <br><br><button :id="user.correo+idGuardarCambios" style="display:none ;" class="btn btn-primary" @click="update(item.isbn,item.titulo,item.edicion,item.editorial)">Guardar cambios</button></td>
+              <td> <button @click="editarUser(user.correo)" class="btn btn-warning" >Modificar</button> <button class="btn btn-danger" @click="eliminar(user.correo)">Eliminar</button> <br><br><button :id="user.correo+GuardarCambios" style="display:block ;" class="btn btn-primary" @click="update(user.correo,user.nombre,user.paterno,user.password)">Guardar cambios</button></td>
           </tr>
 
         </tbody>
@@ -255,7 +255,29 @@
                     }
                     this.items = auxItems;
                     console.log(this.items);
-                },
+                }
+
+            }
+    }).mount("#books-list");
+
+    const userList = Vue.createApp({
+        
+        data() {
+            return {
+                header: "Usuarios",
+                guardarCambios:"guardarCambios",
+                editingUsers:false,
+                messageUsers:"",
+                idCorreo:"correo",
+                idNombre:"nombre",
+                idPaterno:"paterno",
+                idPassword:"password",
+                GuardarCambios:"guardarCambios",
+                users:[{correo:'herschel@gmail.com',nombre:'herschel',paterno:'gonzalez',password:'her888'}]
+            }
+        },
+
+            methods:{
                 doAddUsers(editing){
                     this.editingUsers = editing;
                     this.newNombre = ""; 
@@ -265,7 +287,6 @@
                 },
                 validarCajasUser(){
                     let desactivarCajas = true;
-                    //console.log(this.newISBN.length);
                     if (this.newNombre.length!=0 && this.newPaterno.length!=0 && this.newCorreo.length!=0 && this.newPassword.length!=0) {
                         desactivarCajas = false;
                     }
@@ -290,21 +311,55 @@
                     return this.users.some(element=>element.correo==this.newCorreo);
                 },
                 editarUser(correo){
-                    let capaCorreo = document.getElementById(correo+'idCorreo');
-                    let nombre = document.getElementById(correo+'idNombre');
-                    let paterno = document.getElementById(correo+'idPaterno');
-                    let password = document.getElementById(correo+'idPassword');
-                    let guardarCambios = document.getElementById(correo+'idGuardarCambios');
+                    let capaCorreo = document.getElementById(correo+'correo');
+                    let nombre = document.getElementById(correo+'nombre');
+                    let paterno = document.getElementById(correo+'paterno');
+                    let password = document.getElementById(correo+'password');
+                    let guardarCambios = document.getElementById(correo+'guardarCambios');
                     capaCorreo.disabled=false;
                     nombre.disabled=false;
                     paterno.disabled=false;
                     password.disabled=false;
                     guardarCambios.style.display='block';
                     
+                },
+                update(correo,nombre,paterno,password){
+                    let correoNuevo = document.getElementById(correo+'correo').value;
+                    let nombreNuevo = document.getElementById(correo+'nombre').value;
+                    let paternoNuevo = document.getElementById(correo+'paterno').value;
+                    let passwordNuevo = document.getElementById(correo+'password').value;
+                    let posicion = 0;
+                    let auxItems = this.users;
+
+                    for (const user of this.users) {
+                        console.log(this.correo);
+                        if (user.correo==correo) {
+                            auxItems[posicion].correo=correoNuevo;
+                            auxItems[posicion].nombre=nombreNuevo;
+                            auxItems[posicion].paterno=paternoNuevo;
+                            auxItems[posicion].password=passwordNuevo;
+                        }
+                        posicion++;
+                    }
+                    this.users = auxItems;
+                    console.log(this.users);
+                },
+                eliminar(correo){
+                    console.log(correo);
+                    let newItems = [];
+                    for (const user of this.users) {
+                        console.log(this.user);
+                        if (user.correo!=correo) {
+                            newItems.push(user);
+                        }
+                    }
+                    this.users=newItems;
+
+                   // console.log(this.items);
                 }
 
             }
-    }).mount("#books-list");
+    }).mount("#users-list");
 </script>
     
 </body>
