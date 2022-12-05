@@ -139,7 +139,7 @@
               <td> <input type="text" :id="user.correo+idNombre" disabled="true" :value="user.nombre"></td>
               <td> <input type="text" :id="user.correo+idPaterno" disabled="true" :value="user.paterno"></td>
               <td> <input type="text" :id="user.correo+idPassword" disabled="true" :value="user.password"></td>
-              <td> <button @click="editarUser(user.correo)" class="btn btn-warning" >Modificar</button> <button class="btn btn-danger" @click="eliminar(user.correo)">Eliminar</button> <br><br><button :id="user.correo+GuardarCambios" style="display:block ;" class="btn btn-primary" @click="update(user.correo,user.nombre,user.paterno,user.password)">Guardar cambios</button></td>
+              <td> <button @click="editarUser(user.correo)" class="btn btn-warning" >Modificar</button> <button class="btn btn-danger" @click="eliminar(user.correo)">Eliminar</button> <br><br><button :id="user.correo+GuardarCambios" style="display:none ;" class="btn btn-primary" @click="update(user.correo,user.nombre,user.paterno,user.password)">Guardar cambios</button></td>
           </tr>
 
         </tbody>
@@ -255,6 +255,11 @@
                     }
                     this.items = auxItems;
                     console.log(this.items);
+                    document.getElementById(isbn+'isbn').disabled=true;
+                    document.getElementById(isbn+'titulo').disabled=true;
+                    document.getElementById(isbn+'edicion').disabled=true;
+                    document.getElementById(isbn+'editorial').disabled=true;
+                    document.getElementById(isbn+'guardarCambios').style.display='none';
                 }
 
             }
@@ -287,6 +292,8 @@
                 },
                 validarCajasUser(){
                     let desactivarCajas = true;
+                    console.log("cajas");
+                    console.log(this.newNombre.length);
                     if (this.newNombre.length!=0 && this.newPaterno.length!=0 && this.newCorreo.length!=0 && this.newPassword.length!=0) {
                         desactivarCajas = false;
                     }
@@ -343,6 +350,16 @@
                     }
                     this.users = auxItems;
                     console.log(this.users);
+
+                    document.getElementById(correo+'correo').disabled=true;
+                    document.getElementById(correo+'nombre').disabled=true;
+                    document.getElementById(correo+'paterno').disabled=true;
+                    document.getElementById(correo+'password').disabled=true;
+
+                    document.getElementById(correo+'guardarCambios').style.display='none';
+
+
+
                 },
                 eliminar(correo){
                     console.log(correo);
